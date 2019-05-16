@@ -1,0 +1,77 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/ionic.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {      
+        $("#insert").click(function() {
+            
+            var namamhs        =$("#namamhs").val();
+            var nimmhs     =$("#nimmhs").val();
+            var progdi  =$("#progdi").val();
+            var alamat       =$("#alamat").val();
+ 
+            
+ var dataString="namamhs="+namamhs+"&nimmhs="+nimmhs+"&progdi="+progdi+"&alamat="+alamat+"&insert=";
+ if( $.trim(namamhs).length>0 & $.trim(nimmhs).length>0  & $.trim(progdi).length>0  & $.trim(alamat).length>0)
+ {
+                $.ajax({
+                    type: "POST",
+                    url: "https://madhityagustam.000webhostapp.com/uts/www/insert.php",
+                    data: dataString,
+                    crossDomain: true,
+                    cache: false,
+                    beforeSend: function() {
+                        $("#insert").val('Connecting...');
+                    },
+                    success: function(data) {
+                        if (data == "success") {
+                            alert("selamat udah bisa");
+                            $("#insert").val('submit');
+                        } else if (data == "error") {
+                            alert("ehek belum bisa");
+                        }
+                    }
+                });
+            }
+            return false;
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <div class="bar bar-header bar-positive" style="margin-bottom:80px;">
+        <h1 class="title">Insert Database</h1>
+        <a class="button button-clear" href="readjson.html">Read JSON</a>
+    </div>
+    <br/>
+    <br/>
+    
+
+ <div class="list">
+ <input type="hidden" id="id" value=""/>
+ 
+ <div class="item">
+ <label>Namamhs</label>
+ <input type="text" id="namamhs" value=""/>
+ </div>
+ <div class="item">
+ <label>Nimmhs</label>
+ <input type="text" id="nimmhs" value=""/>
+ </div>
+ <div class="item">
+ <label>Progdi</label>
+ <input type="text" id="progdi" value=""/>
+ </div>
+ <div class="item">
+ <label>Alamat</label>
+ <input type="text" id="alamat" value=""/>
+ </div>
+ <div class="item">
+ <input type="button" id="insert" class="button button-block" value="Insert"/>
+ </div>
+ </div>
+</body>
+</html>

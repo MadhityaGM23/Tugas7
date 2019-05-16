@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/ionic.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var url = "https://madhityagustam.000webhostapp.com/uts/www/json.php";
+        $.getJSON(url, function(result) {
+            console.log(result);
+            $.each(result, function(i, field) {
+                
+                var id = field.id;
+                var namamhs=field.namamhs;
+                var nimmhs=field.nimmhs;
+                var progdi=field.progdi;
+                var alamat=field.alamat;
+               
+                
+                $("#listview").append("<a class='item' href='form.html?id=" + id + "&namamhs=" + namamhs + "&nimmhs=" + nimmhs+ "&progdi=" + progdi + "&alamat=" + alamat +  "'><h2>" + namamhs + " </h2><h2>" + nimmhs + " </h2><h2>" + progdi + " </h2><h2>" + alamat + "</p></a>");
+            });
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <div class="bar bar-header bar-positive" style="margin-bottom:80px;">
+        <a href="index.html" class="button button-clear">Home</a>
+        <h1 class="title">Read Database (JSON)</h1>
+    </div>
+    <br/>
+    <br/>
+    <ul class="list" id="listview">
+    </ul>
+</body>
+
+</html>
